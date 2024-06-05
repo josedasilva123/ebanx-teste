@@ -3,7 +3,7 @@ import { reset } from "../controllers/reset.controller";
 
 export const resetRoutes = async (fastify: FastifyInstance) => {
     fastify.post("/", { preHandler: (req, res, done) => {
-        req.body = {};
+        req.body = { mock: "mock"};
 
         done();
     }}, reset);
