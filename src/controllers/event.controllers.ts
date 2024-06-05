@@ -6,13 +6,13 @@ const execute = (request: FastifyRequest<{ Body: IEvent }>, response: FastifyRep
    const { type, destination, amount, origin } = request.body;
 
    if (type === "deposit") {
-      const event = eventService.deposit(destination, amount);
+      const event = eventService.deposit(destination!, amount);
 
       return response.status(201).send({ destination: event });
    }
 
    if (type === "withdraw") {
-      const event = eventService.withdraw(destination, amount);
+      const event = eventService.withdraw(origin!, amount);
 
       return response.status(201).send({ destination: event });
    }
@@ -20,7 +20,7 @@ const execute = (request: FastifyRequest<{ Body: IEvent }>, response: FastifyRep
    if (type === "transfer") {
       const withdraw = eventService.withdraw(origin!, amount);
 
-      const deposit = eventService.deposit(destination, amount);
+      const deposit = eventService.deposit(destination!, amount);
 
       return response.status(201).send({ origin: withdraw, destination: deposit });
    }
