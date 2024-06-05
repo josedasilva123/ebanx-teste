@@ -1,6 +1,6 @@
 export interface IEvent{
     type: "deposit" | "withdraw" | "transfer";
-    origin: string;
+    origin?: string;
     amount: number;
     destination: string;
 }
