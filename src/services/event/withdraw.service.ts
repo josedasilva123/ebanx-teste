@@ -1,10 +1,13 @@
 import { accountDatabase } from "../../database/account";
+import { AppError } from "../../errors/app.error";
 import { IAccount } from "../../interfaces/account.interface";
 
 export const withdraw = (accountId: string, amount: number) => {
-   const account = accountDatabase.find(
-      (account) => account.id === accountId
-   ) as IAccount;
+   const account = accountDatabase.find((account) => account.id === accountId);
+
+   if (!account) {
+      throw new AppError("Account does not exist", 404);
+   }
 
    const updateAccount: IAccount = { ...account, balance: account.balance - amount };
 
