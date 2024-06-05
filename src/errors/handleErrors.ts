@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 
 export const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
    if (error instanceof AppError) {
-      return res.status(error.statusCode).send();
+      return res.status(error.statusCode).json(0);
    }
 
    console.log(error);

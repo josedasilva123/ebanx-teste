@@ -4,5 +4,5 @@ import { Request, Response } from "express";
 export const reset = (request: Request, response: Response) => {
     accountDatabase.splice(0, accountDatabase.length);
 
-    return response.status(200).send();
+    return response.status(200).json("OK");
 }
