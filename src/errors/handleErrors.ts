@@ -1,7 +1,7 @@
-import { FastifyReply, FastifyRequest } from "fastify";
 import { AppError } from "./app.error";
+import { NextFunction, Request, Response } from "express";
 
-export const errorHandler = (error: Error, req: FastifyRequest, res: FastifyReply) => {
+export const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
    if (error instanceof AppError) {
       return res.status(error.statusCode).send();
    }

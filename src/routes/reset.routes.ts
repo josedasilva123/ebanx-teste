@@ -1,10 +1,5 @@
-import { FastifyInstance } from "fastify";
 import { reset } from "../controllers/reset.controller";
+import { Router } from "express";
 
-export const resetRoutes = async (fastify: FastifyInstance) => {
-    fastify.post("/", { preHandler: (req, res, done) => {
-        req.body = { mock: "mock"};
-
-        done();
-    }}, reset);
-}
+export const resetRoutes = Router(); 
+resetRoutes.post("/", reset);

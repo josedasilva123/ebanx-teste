@@ -1,13 +1,13 @@
-import { FastifyReply, FastifyRequest } from "fastify";
 import { accountService } from "../services/account/_index";
+import { Request, Response } from "express";
 
 const getOne = (
-   request: FastifyRequest<{ Querystring: { account_id: string } }>,
-   response: FastifyReply
+   request: Request,
+   response: Response
 ) => {
-   const account = accountService.getOne(request.query.account_id);
+   const account = accountService.getOne(request.query.account_id as string);
 
-   return response.status(200).send(account?.balance);
+   return response.status(200).json(account?.balance);
 };
 
 export const accountControllers = { getOne };

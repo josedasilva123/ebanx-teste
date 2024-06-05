@@ -1,14 +1,18 @@
-import fastify from "fastify";
-import cors from "@fastify/cors";
 import { accountRoutes } from "./routes/account.routes";
 import { eventRoutes } from "./routes/event.routes";
 import { resetRoutes } from "./routes/reset.routes";
 import { errorHandler } from "./errors/handleErrors";
 
-export const app = fastify();
+import express, { json } from "express";
+import cors from "cors";
 
-app.register(cors);
-app.setErrorHandler(errorHandler);
-app.register(accountRoutes, { prefix: "/account"});
-app.register(eventRoutes, { prefix: "/event"});
-app.register(resetRoutes, { prefix: "/reset"});
+export const app = express();
+
+app.use(cors());
+app.use(json());
+
+app.use("/account", accountRoutes);
+app.use("/event", eventRoutes);
+app.use("/reset", resetRoutes);
+
+app.use(errorHandler);

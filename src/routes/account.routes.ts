@@ -1,6 +1,6 @@
-import { FastifyInstance } from "fastify";
 import { accountControllers } from "../controllers/account.controller";
+import { Router } from "express";
 
-export const accountRoutes = async (fastify: FastifyInstance) => {
-    fastify.get("/", accountControllers.getOne);
-}
+export const accountRoutes = Router();
+
+accountRoutes.get("/", accountControllers.getOne);
