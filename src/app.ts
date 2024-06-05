@@ -11,7 +11,7 @@ export const app = express();
 app.use(cors());
 app.use(json());
 
-app.use("/account", accountRoutes);
+app.use("/balance", accountRoutes);
 app.use("/event", eventRoutes);
 app.use("/reset", resetRoutes);
 
