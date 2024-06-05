@@ -14,7 +14,7 @@ const execute = (request: FastifyRequest<{ Body: IEvent }>, response: FastifyRep
    if (type === "withdraw") {
       const event = eventService.withdraw(origin!, amount);
 
-      return response.status(201).send({ destination: event });
+      return response.status(201).send({ origin: event });
    }
 
    if (type === "transfer") {

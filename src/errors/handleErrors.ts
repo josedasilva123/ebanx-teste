@@ -3,7 +3,7 @@ import { AppError } from "./app.error";
 
 export const errorHandler = (error: Error, req: FastifyRequest, res: FastifyReply) => {
    if (error instanceof AppError) {
-      return res.status(error.statusCode).send({ message: error.message });
+      return res.status(error.statusCode).send();
    }
 
    console.log(error);
