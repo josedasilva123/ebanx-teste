@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { accountService } from "../services/account/_index";
 
-export const getOne = (
+const getOne = (
    request: FastifyRequest<{ Querystring: { account_id: string } }>,
    response: FastifyReply
 ) => {
@@ -9,3 +9,5 @@ export const getOne = (
 
    return response.status(200).send(account?.balance);
 };
+
+export const accountControllers = { getOne };

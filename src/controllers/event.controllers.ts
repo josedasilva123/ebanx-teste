@@ -2,10 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { IEvent } from "../interfaces/event.interface";
 import { eventService } from "../services/event/_index";
 
-export const execute = (
-   request: FastifyRequest<{ Body: IEvent }>,
-   response: FastifyReply
-) => {
+const execute = (request: FastifyRequest<{ Body: IEvent }>, response: FastifyReply) => {
    const { type, destination, amount, origin } = request.body;
 
    if (type === "deposit") {
@@ -28,3 +25,5 @@ export const execute = (
       return response.status(201).send({ origin: withdraw, destination: deposit });
    }
 };
+
+export const eventControllers = { execute };
